@@ -1,0 +1,9 @@
+package com.lalitha.hospitalmanagement.repository;
+
+
+import com.lalitha.hospitalmanagement.entity.Role;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface RoleRepository extends JpaRepository<Role,Long> {
+    Role findByName(String name);
+}
