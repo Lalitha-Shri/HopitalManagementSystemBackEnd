@@ -23,19 +23,20 @@ public class MedicationController {
     private MedicationService medicationService;
     @Autowired
     private MedicationRepository medicationRepository;
-    @PostMapping    //Postmapping is to add the new appointment details to database
+    @PostMapping    //Postmapping is to add the new medication details to database
     public ResponseEntity<MedicationDto> saveMedication(@RequestBody MedicationDto medicationDto)
     {
         MedicationDto saveMedication=medicationService.addMedication(medicationDto);
         return new ResponseEntity<>(saveMedication, HttpStatus.CREATED);
     }
-    //Getmapping is to get all the doctor details
+    //Getmapping is to get all the medication details
     @GetMapping
     public ResponseEntity<List<MedicationDto>> getAllMedication()
     {
         List<MedicationDto> allMedication=medicationService.getAllMedication();
         return new ResponseEntity<List<MedicationDto>>(allMedication,HttpStatus.OK);
     }
+     //Getmapping is to get the medication details based on patients name
     @GetMapping("patient/{name}")
     public ResponseEntity<List<MedicationDto>> getpatientbyName(@PathVariable String name)
     {
