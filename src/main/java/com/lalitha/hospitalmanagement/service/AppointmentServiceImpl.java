@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 public class AppointmentServiceImpl implements AppointmentService{
     private ModelMapper modelMapper;
     private AppointmentRepository appointmentRepository;
-    @Override
+    @Override//add the appoinment to db by converting from dto to entity using model mapper
     public AppointmentDto add(AppointmentDto appointmentDto) {
         Appointment appointment=modelMapper.map(appointmentDto, Appointment.class);
         Appointment saved=appointmentRepository.save(appointment);
@@ -28,7 +28,7 @@ public class AppointmentServiceImpl implements AppointmentService{
         return null;
     }
 
-    @Override
+    @Override//get all the appoinment from db and converting from entity to dto using model mapper
     public List<AppointmentDto> getAll() {
         List<Appointment> all= appointmentRepository.findAll();
         return all.stream().map(appointment->modelMapper.map(appointment, AppointmentDto.class)).collect(Collectors.toList());
@@ -39,7 +39,7 @@ public class AppointmentServiceImpl implements AppointmentService{
         return null;
     }
 
-    @Override
+    @Override//get by id the appoinment from db and converting from entity to dto using model mapper
     public AppointmentDto getByPatientId(Long id) {
         Appointment appointment=appointmentRepository.findByPatient_id(id);
         return modelMapper.map(appointment,AppointmentDto.class);
