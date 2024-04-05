@@ -14,7 +14,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
-@AllArgsConstructor
+@AllArgsConstructor//Security config file of spring security used for authentication and authorozation
 public class SpringSecurityConfig {
     JwtTokenFilter jwtTokenFilter;
     @Bean
