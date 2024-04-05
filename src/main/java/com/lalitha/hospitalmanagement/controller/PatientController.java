@@ -23,32 +23,32 @@ public class PatientController {
     private PatientService patientService;
     @Autowired
     private PatientRepository patientRepository;
-    @PostMapping    //Postmapping is to add the new doctor details to database
+    @PostMapping    //Postmapping is to add the new patient details to database
     public ResponseEntity<PatientDto> saveDoctor(@RequestBody PatientDto patientDto)
     {
         PatientDto savePatient=patientService.addPatient(patientDto);
         return new ResponseEntity<>(savePatient, HttpStatus.CREATED);
     }
-    //Getmapping is to get all the doctor details
+    //Getmapping is to get all the patient details
     @GetMapping
     public ResponseEntity<List<PatientDto>> getAllPatients()
     {
         List<PatientDto> allPatient=patientService.getAllPatient();
         return new ResponseEntity<List<PatientDto>>(allPatient,HttpStatus.OK);
     }
-    @DeleteMapping("/{id}") //delete doctor by id
+    @DeleteMapping("/{id}") //delete patient by id
     public  String deletePatient(@PathVariable("id")Long patientId)
     {
         patientService.deletePatient(patientId);
         return "Patient is deleted";
     }
-    @GetMapping("/{patientId}") //get doctor by id
+    @GetMapping("/{patientId}") //get patient by id
     public ResponseEntity<PatientDto> getUserId(@PathVariable("patientId")Long userId)
     {
         PatientDto getPatient=patientService.getPatientById(userId);
         return new ResponseEntity<PatientDto>(getPatient,HttpStatus.OK);
     }
-    @PutMapping("/{id}")//update doctor details by id
+    @PutMapping("/{id}")//update patient details by id
     public ResponseEntity<PatientDto> updateDoctor(@PathVariable("id") Long id, @RequestBody  PatientDto patientDto)
     {
         PatientDto updatedPatient=patientService.updatePatient(patientDto,id);
