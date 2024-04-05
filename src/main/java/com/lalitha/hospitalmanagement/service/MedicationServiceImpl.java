@@ -18,20 +18,20 @@ import java.util.stream.Collectors;
 public class MedicationServiceImpl implements MedicationService {
     private MedicationRepository medicationRepository;
     private ModelMapper modelMapper;
-    @Override
+    @Override//add the medication to db by converting from dto to entity using model mapper
     public MedicationDto addMedication(MedicationDto medicationDto) {
         Medication medication=modelMapper.map(medicationDto, Medication.class);
         Medication saveMed=medicationRepository.save(medication);
         return modelMapper.map(saveMed, MedicationDto.class);
     }
 
-    @Override
+    @Override//get all the medication from db and converting from entity to dto using model mapper
     public List<MedicationDto> getAllMedication() {
         List<Medication> medicationList= medicationRepository.findAll();
         return medicationList.stream().map(med->modelMapper.map(med,MedicationDto.class)).collect(Collectors.toList());
     }
 
-    @Override
+    @Override//get the medication by id from db and converting from entity to dto using model mapper
     public List<MedicationDto> findByPatientName(String name) {
 
         List<Medication> medication=medicationRepository.findByPatientName(name);
