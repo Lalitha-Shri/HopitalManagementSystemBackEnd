@@ -24,7 +24,7 @@ public class AppointmentController {
         AppointmentDto savedBus=appointmentService.add(appointmentDto);
         return new ResponseEntity<>(savedBus, HttpStatus.CREATED);
     }
-    //Getmapping is to get all the bus details
+    //Getmapping is to get all the appointment details
     @GetMapping
     public ResponseEntity<List<AppointmentDto>> getAllAppointment()
     {
@@ -32,12 +32,14 @@ public class AppointmentController {
         return new ResponseEntity<List<AppointmentDto>>(allAppointment,HttpStatus.OK);
 
     }
+    //Getmapping is to get  the appointment details based on id
     @GetMapping("/patient/{id}")
     public ResponseEntity<AppointmentDto> getbypatient_id(@PathVariable("id") Long id)
     {
         AppointmentDto appointmentDto=appointmentService.getByPatientId(id);
         return new ResponseEntity<AppointmentDto>(appointmentDto,HttpStatus.OK);
     }
+    //Putmapping is to update the appointment details when id is given
     @PutMapping("cancelAppointment/{id}")
     public ResponseEntity<AppointmentDto> cancelTicket(@PathVariable("id") Long id){
         AppointmentDto updatedAppointment=appointmentService.cancelTicket(id);
